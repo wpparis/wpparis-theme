@@ -138,20 +138,23 @@ function wearewp_comment_form_default_fields( $fields ){
 		            '<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /></div>',
 		'comment_field' => '<div class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label> <textarea id="comment" name="comment" cols="60" rows="8" maxlength="65525" class="form-control" aria-required="true" required="required"></textarea></div>',
 	);
-	
-	
+
+
 	return $fields;
 }
 
 
 // add_filter( 'comment_form_defaults', 'wearewp_comment_form_defaults', 100, 1 );
 function wearewp_comment_form_defaults( $defaults ){
-	
+
 	$defaults['title_reply_before'] = '<div id="reply-title" class="comment-reply-title">';
 	$defaults['title_reply_after'] = '</div>';
-	
+
 	$defaults['comment_field'] = '';
 
-	
+
 	return $defaults;
 }
+
+// Functions for Restrict Content Pro plugin
+require_once 'includes/func.rcp.php';
