@@ -23,3 +23,34 @@ function wpparis_rcp_add_user_fields() {
 add_action( 'rcp_after_password_registration_field', 'wpparis_rcp_add_user_fields' );
 add_action( 'rcp_profile_editor_after', 'wpparis_rcp_add_user_fields' );
 
+
+/**
+ * Adds the custom fields to the member edit screen
+ *
+ */
+function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
+
+	$profession = get_user_meta( $user_id, 'rcp_profession', true );
+	$ville  = get_user_meta( $user_id, 'rcp_ville', true );
+	?>
+	<tr valign="top">
+		<th scope="row" valign="top">
+			<label for="rcp_profession"><?php _e( 'Profession', 'rcp' ); ?></label>
+		</th>
+		<td>
+			<input name="rcp_profession" id="rcp_profession" type="text" value="<?php echo esc_attr( $profession ); ?>"/>
+			<p class="description"><?php _e( 'La profession de l\'adhérent', 'rcp' ); ?></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row" valign="top">
+			<label for="rcp_profession"><?php _e( 'Ville', 'rcp' ); ?></label>
+		</th>
+		<td>
+			<input name="rcp_ville" id="rcp_ville" type="text" value="<?php echo esc_attr( $ville); ?>"/>
+			<p class="description"><?php _e( 'La ville de l\'adhérent', 'rcp' ); ?></p>
+		</td>
+	</tr>
+	<?php
+}
+add_action( 'rcp_edit_member_after', 'wpparis_rcp_add_member_edit_fields' );
