@@ -69,3 +69,19 @@ function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
 	}
 }
 add_action( 'rcp_form_processing', 'wpparis_rcp_save_user_fields_on_register', 10, 2 );
+
+
+/**
+ * Stores the information submitted profile update
+ *
+ */
+function wpparis_rcp_save_user_fields_on_profile_save( $user_id ) {
+	if( ! empty( $_POST['rcp_profession'] ) ) {
+		update_user_meta( $user_id, 'rcp_profession', sanitize_text_field( $_POST['rcp_profession'] ) );
+	}
+	if( ! empty( $_POST['rcp_ville'] ) ) {
+		update_user_meta( $user_id, 'rcp_ville', sanitize_text_field( $_POST['rcp_ville'] ) );
+	}
+}
+add_action( 'rcp_user_profile_updated', 'wpparis_rcp_save_user_fields_on_profile_save', 10 );
+add_action( 'rcp_edit_member', 'wpparis_rcp_save_user_fields_on_profile_save', 10 );
