@@ -1,0 +1,244 @@
+/** A11Y **/
+.fl-page-nav .navbar-toggle:focus,
+a:focus,
+a.fl-button:focus,
+.fl-builder-content a.fl-button:focus,
+button:focus,
+input[type=button]:focus,
+input[type=submit]:focus {
+	outline: thin dotted;
+	outline-offset: -3px;
+}
+
+.fl-photo-caption {
+	white-space: normal;
+}
+
+legend {
+	border: none;
+	margin-bottom: 0;
+}
+
+/* couleur du placeholder */
+input[type=text]::-webkit-input-placeholder,
+input[type=password]::-webkit-input-placeholder,
+input[type=email]::-webkit-input-placeholder,
+input[type=tel]::-webkit-input-placeholder,
+input[type=date]::-webkit-input-placeholder,
+input[type=month]::-webkit-input-placeholder,
+input[type=week]::-webkit-input-placeholder,
+input[type=time]::-webkit-input-placeholder,
+input[type=number]::-webkit-input-placeholder,
+input[type=search]::-webkit-input-placeholder,
+input[type=url]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: rgba(128, 128, 128, 0,6);
+}
+input[type=text]:-moz-placeholder,
+input[type=password]:-moz-placeholder,
+input[type=email]:-moz-placeholder,
+input[type=tel]:-moz-placeholder,
+input[type=date]:-moz-placeholder,
+input[type=month]:-moz-placeholder,
+input[type=week]:-moz-placeholder,
+input[type=time]:-moz-placeholder,
+input[type=number]:-moz-placeholder,
+input[type=search]:-moz-placeholder,
+input[type=url]:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #747474;
+}
+input[type=text]::-moz-placeholder,
+input[type=password]::-moz-placeholder,
+input[type=email]::-moz-placeholder,
+input[type=tel]::-moz-placeholder,
+input[type=date]::-moz-placeholder,
+input[type=month]::-moz-placeholder,
+input[type=week]::-moz-placeholder,
+input[type=time]::-moz-placeholder,
+input[type=number]::-moz-placeholder,
+input[type=search]::-moz-placeholder,
+input[type=url]::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #747474;
+}
+input[type=text]:-ms-input-placeholder,
+input[type=password]:-ms-input-placeholder,
+input[type=email]:-ms-input-placeholder,
+input[type=tel]:-ms-input-placeholder,
+input[type=date]:-ms-input-placeholder,
+input[type=month]:-ms-input-placeholder,
+input[type=week]:-ms-input-placeholder,
+input[type=time]:-ms-input-placeholder,
+input[type=number]:-ms-input-placeholder,
+input[type=search]:-ms-input-placeholder,
+input[type=url]:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: rgba(128, 128, 128, 0,6);
+}
+.woocommerce form .form-row input.input-text::-webkit-input-placeholder,
+.woocommerce form .form-row textarea::-webkit-input-placeholder,
+.woocommerce form .form-row select::-webkit-input-placeholder,
+.woocommerce table.cart td.actions .coupon .input-text::-webkit-input-placeholder,
+.woocommerce-page form .form-row input.input-text::-webkit-input-placeholder,
+.woocommerce-page form .form-row textarea::-webkit-input-placeholder,
+.woocommerce-page form .form-row select::-webkit-input-placeholder,
+.woocommerce-page table.cart td.actions .coupon .input-text::-webkit-input-placeholder {
+    color: rgba(128, 128, 128, 0,6);
+}
+.woocommerce form .form-row input.input-text:-moz-placeholder,
+.woocommerce form .form-row textarea:-moz-placeholder,
+.woocommerce form .form-row select:-moz-placeholder,
+.woocommerce table.cart td.actions .coupon .input-text:-moz-placeholder,
+.woocommerce-page form .form-row input.input-text:-moz-placeholder,
+.woocommerce-page form .form-row textarea:-moz-placeholder,
+.woocommerce-page form .form-row select:-moz-placeholder,
+.woocommerce-page table.cart td.actions .coupon .input-text:-moz-placeholder {
+    color: #747474;
+}
+.woocommerce form .form-row input.input-text::-moz-placeholder,
+.woocommerce form .form-row textarea::-moz-placeholder,
+.woocommerce form .form-row select::-moz-placeholder,
+.woocommerce table.cart td.actions .coupon .input-text::-moz-placeholder,
+.woocommerce-page form .form-row input.input-text::-moz-placeholder,
+.woocommerce-page form .form-row textarea::-moz-placeholder,
+.woocommerce-page form .form-row select::-moz-placeholder,
+.woocommerce-page table.cart td.actions .coupon .input-text::-moz-placeholder {
+    color: #747474;
+}
+.woocommerce form .form-row input.input-text:-ms-input-placeholder,
+.woocommerce form .form-row textarea:-ms-input-placeholder,
+.woocommerce form .form-row select:-ms-input-placeholder,
+.woocommerce table.cart td.actions .coupon .input-text:-ms-input-placeholder,
+.woocommerce-page form .form-row input.input-text:-ms-input-placeholder,
+.woocommerce-page form .form-row textarea:-ms-input-placeholder,
+.woocommerce-page form .form-row select:-ms-input-placeholder,
+.woocommerce-page table.cart td.actions .coupon .input-text:-ms-input-placeholder {
+    color: rgba(128, 128, 128, 0,6);
+}
+
+
+/** Header Menu Section **/
+.fl-page-nav-right .fl-page-header-logo {
+    display: table;
+}
+
+.fl-page-nav-right .fl-page-header-logo .logo {
+    text-decoration: none;
+    display: table-cell;
+}
+
+.fl-page-nav-right .fl-page-header-logo .description {
+   display: table-cell;
+    vertical-align: middle;
+    padding-left: 20px;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+/** Button **/
+button,
+input[type=button],
+input[type=submit],
+a.fl-button,
+a.fl-button:visited,
+.fl-builder-content a.fl-button,
+.fl-builder-content a.fl-button:visited {
+	border-radius: 0 !important;
+	font-size: 16px;
+    line-height: 18px;
+    padding: 12px 24px;
+}
+
+/* WooCommerce product page */
+.product_meta {
+	display: none;
+}
+.woocommerce .woocommerce-checkout #customer_details .col-2 {
+	display:none;
+}
+.woocommerce .woocommerce-checkout #customer_details .col-1 {
+	width:100%;
+}
+
+
+
+
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span {
+	color: #ff0055;
+}
+
+.price .amount {
+	color: #ff0055;
+	font-weight: bold;
+}
+
+@media (min-width: 768px) {
+	.fl-page-content {
+		background: #fff url('../img/wpparis-boat.jpg') no-repeat bottom center;
+	}
+}
+
+
+/**
+ * Add arrow to menu items with sub-items in Beaver Builder theme
+ *
+ * @author Davinder Singh Kainth
+ * @link http://probeaver.com/?p=726
+ *
+ */
+ 
+.nav li > a:after {
+  color: inherit;
+  content: "\f107";
+  font-family: FontAwesome; 	
+  margin-left: 3px;
+  float: right;
+  vertical-align: middle;
+}
+
+.nav li > a:only-child:after {
+  content: '';
+}
+
+
+/**
+*	Comments
+**/
+.comment-reply-title {
+	color: #333333;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: none;
+	font-size: 24px;
+    letter-spacing: 0px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.comment-form-comment,
+.comment-form-author,
+.comment-form-email,
+.comment-form-url {
+	margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+	.comment-form-author,
+	.comment-form-email,
+	.comment-form-url {
+		display: inline-block;
+		width: 32%;
+		margin-right: 2%;
+	}
+	.comment-form-url {
+		width: 31%;
+		margin-right: 0;
+	}
+}
