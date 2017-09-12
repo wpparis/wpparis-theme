@@ -10,6 +10,7 @@ function wpparis_rcp_add_user_fields() {
 	$civilite = get_user_meta( get_current_user_id(), 'rcp_civilite', true );
 	$profession = get_user_meta( get_current_user_id(), 'rcp_profession', true );
 	$ville  = get_user_meta( get_current_user_id(), 'rcp_ville', true );
+	$tshirt = get_user_meta( get_current_user_id(), 'rcp_tshirt', true );
 
 	?>
     <p>
@@ -28,6 +29,10 @@ function wpparis_rcp_add_user_fields() {
 		<label for="rcp_ville"><?php _e( 'Votre ville', 'rcp' ); ?></label>
 		<input name="rcp_ville" id="rcp_ville" type="text" value="<?php echo esc_attr( $ville); ?>"/>
 	</p>
+    <p>
+        <input name="rcp_tshirt" id="rcp_tshirt" type="checkbox" value="1" <?php checked( $tshirt ); ?>/>
+        <label for="rcp_tshirt"><?php _e( 'Oui, je veux mon t-shirt', 'rcp' ); ?></label>
+    </p>
 	<?php
 }
 add_action( 'rcp_after_password_registration_field', 'wpparis_rcp_add_user_fields' );
@@ -43,6 +48,7 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
 	$civilite = get_user_meta( get_current_user_id(), 'rcp_civilite', true );
 	$profession = get_user_meta( $user_id, 'rcp_profession', true );
 	$ville  = get_user_meta( $user_id, 'rcp_ville', true );
+	$tshirt = get_user_meta( get_current_user_id(), 'rcp_tshirt', true );
 	?>
 
     <tr valign="top">
@@ -75,6 +81,15 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
 			<p class="description"><?php _e( 'La ville de l\'adhérent', 'rcp' ); ?></p>
 		</td>
 	</tr>
+    <tr valign="top">
+        <th scope="row" valign="top">
+            <label for="rcp_tshirt"><?php _e( 'T-Shirt', 'rcp' ); ?></label>
+        </th>
+        <td>
+            <input name="rcp_tshirt" id="rcp_tshirt" type="checkbox" <?php checked( $tshirt ); ?>/>
+            <span class="description"><?php _e( 'A cocher si le t-shirt n\'a pas été donné', 'rcp' ); ?></span>
+        </td>
+    </tr>
 	<?php
 }
 add_action( 'rcp_edit_member_after', 'wpparis_rcp_add_member_edit_fields' );
@@ -94,6 +109,9 @@ function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
 	if( ! empty( $posted['rcp_ville'] ) ) {
 		update_user_meta( $user_id, 'rcp_ville', sanitize_text_field( $posted['rcp_ville'] ) );
 	}
+    if ( isset( $posted['rcp_tshirt'] ) ) {
+        update_user_meta( $user_id, 'rcp_tshirt', true );
+    }
 }
 add_action( 'rcp_form_processing', 'wpparis_rcp_save_user_fields_on_register', 10, 2 );
 
@@ -117,6 +135,13 @@ function wpparis_rcp_save_user_fields_on_profile_save( $user_id ) {
 	if( ! empty( $_POST['rcp_ville'] ) ) {
 		update_user_meta( $user_id, 'rcp_ville', sanitize_text_field( $_POST['rcp_ville'] ) );
 	}
+    if ( isset( $_POST['rcp_tshirt'] ) ) {
+        // Set the user meta if the box was checked on.
+        update_user_meta( $user_id, 'rcp_tshirt', true );
+    } else {
+        // Delete the user meta if the box is unchecked.
+        delete_user_meta( $user_id, 'rcp_tshirt' );
+    }
 }
 add_action( 'rcp_user_profile_updated', 'wpparis_rcp_save_user_fields_on_profile_save', 10 );
 add_action( 'rcp_edit_member', 'wpparis_rcp_save_user_fields_on_profile_save', 10 );
