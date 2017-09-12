@@ -54,3 +54,18 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
 	<?php
 }
 add_action( 'rcp_edit_member_after', 'wpparis_rcp_add_member_edit_fields' );
+
+
+/**
+ * Stores the information submitted during registration
+ *
+ */
+function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
+	if( ! empty( $posted['rcp_profession'] ) ) {
+		update_user_meta( $user_id, 'rcp_profession', sanitize_text_field( $posted['rcp_profession'] ) );
+	}
+	if( ! empty( $posted['rcp_ville'] ) ) {
+		update_user_meta( $user_id, 'rcp_ville', sanitize_text_field( $posted['rcp_ville'] ) );
+	}
+}
+add_action( 'rcp_form_processing', 'wpparis_rcp_save_user_fields_on_register', 10, 2 );
