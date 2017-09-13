@@ -16,6 +16,7 @@ function wpparis_rcp_add_user_fields() {
 	$profession = get_user_meta( get_current_user_id(), 'rcp_profession', true );
 	$ville  = get_user_meta( get_current_user_id(), 'rcp_ville', true );
 	$tshirt = get_user_meta( get_current_user_id(), 'rcp_tshirt', true );
+	$tshirt_taille = get_user_meta( get_current_user_id(), 'rcp_tshirt_taille', true );
 
 	?>
     <p>
@@ -38,6 +39,20 @@ function wpparis_rcp_add_user_fields() {
         <input name="rcp_tshirt" id="rcp_tshirt" type="checkbox" value="1" <?php checked( $tshirt ); ?>/>
         <label for="rcp_tshirt"><?php _e( 'Oui, je veux mon t-shirt', 'rcp' ); ?></label>
     </p>
+
+    <p>
+        <label for="rcp_tshirt_taille"><?php _e( 'Taille du t-shirt', 'rcp' ); ?></label>
+        <select id="rcp_tshirt_taille" name="rcp_tshirt_taille">
+        	<option value="s" <?php selected( $tshirt_taille, 'm'); ?>><?php _e( 'S (femme uniquement)', 'rcp' ); ?></option>
+            <option value="m" <?php selected( $tshirt_taille, 'm'); ?>><?php _e( 'M', 'rcp' ); ?></option>
+            <option value="l" <?php selected( $tshirt_taille, 'l'); ?>><?php _e( 'L', 'rcp' ); ?></option>
+            <option value="xl" <?php selected( $tshirt_taille, 'xl'); ?>><?php _e( 'XL', 'rcp' ); ?></option>
+        </select>
+    </p>
+
+    <?php
+
+    ?>
 	<?php
 }
 add_action( 'rcp_after_password_registration_field', 'wpparis_rcp_add_user_fields' );
@@ -54,6 +69,7 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
 	$profession = get_user_meta( $user_id, 'rcp_profession', true );
 	$ville  = get_user_meta( $user_id, 'rcp_ville', true );
 	$tshirt = get_user_meta( get_current_user_id(), 'rcp_tshirt', true );
+	$tshirt_taille = get_user_meta( get_current_user_id(), 'rcp_tshirt_taille', true );
 	?>
 
     <tr valign="top">
@@ -95,6 +111,19 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
             <span class="description"><?php _e( 'A cocher si le t-shirt n\'a pas été donné', 'rcp' ); ?></span>
         </td>
     </tr>
+    <tr valign="top">
+        <th scope="row" valign="top">
+            <label for="rcp_civilite"><?php _e( 'Taille du t-shirt', 'rcp' ); ?></label>
+        </th>
+        <td>
+        <select id="rcp_tshirt_taille" name="rcp_tshirt_taille">
+        	<option value="s" <?php selected( $tshirt_taille, 'm'); ?>><?php _e( 'S (femme uniquement)', 'rcp' ); ?></option>
+            <option value="m" <?php selected( $tshirt_taille, 'm'); ?>><?php _e( 'M', 'rcp' ); ?></option>
+            <option value="l" <?php selected( $tshirt_taille, 'l'); ?>><?php _e( 'L', 'rcp' ); ?></option>
+            <option value="xl" <?php selected( $tshirt_taille, 'xl'); ?>><?php _e( 'XL', 'rcp' ); ?></option>
+        </select>
+        </td>
+    </tr>
 	<?php
 }
 add_action( 'rcp_edit_member_after', 'wpparis_rcp_add_member_edit_fields' );
@@ -117,6 +146,9 @@ function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
     if ( isset( $posted['rcp_tshirt'] ) ) {
         update_user_meta( $user_id, 'rcp_tshirt', true );
     }
+	if( ! empty( $posted['rcp_tshirt_taille'] ) ) {
+		update_user_meta( $user_id, 'rcp_tshirt_taille', sanitize_text_field( $posted['rcp_tshirt_taille'] ) );
+	}
 }
 add_action( 'rcp_form_processing', 'wpparis_rcp_save_user_fields_on_register', 10, 2 );
 
@@ -131,6 +163,14 @@ function wpparis_rcp_save_user_fields_on_profile_save( $user_id ) {
 		'femme',
 		'autre'
 	);
+
+	$taille_tshirt = array(
+		's',
+		'm',
+		'l',
+		'xl'
+	);
+
     if( isset( $_POST['rcp_civilite'] ) && in_array( $_POST['rcp_civilite'], $civilite_choice ) ) {
         update_user_meta( $user_id, 'rcp_civilite', sanitize_text_field( $_POST['rcp_civilite'] ) );
     }
@@ -146,6 +186,9 @@ function wpparis_rcp_save_user_fields_on_profile_save( $user_id ) {
     } else {
         // Delete the user meta if the box is unchecked.
         delete_user_meta( $user_id, 'rcp_tshirt' );
+    }
+    if( isset( $_POST['rcp_tshirt_taille'] ) && in_array( $_POST['rcp_tshirt_taille'], $taille_tshirt ) ) {
+        update_user_meta( $user_id, 'rcp_tshirt_taille', sanitize_text_field( $_POST['rcp_tshirt_taille'] ) );
     }
 }
 add_action( 'rcp_user_profile_updated', 'wpparis_rcp_save_user_fields_on_profile_save', 10 );
