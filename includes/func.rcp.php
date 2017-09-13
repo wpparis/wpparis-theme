@@ -1,8 +1,13 @@
 <?php
-// Add new fields for User in Restrict Content Pro Plugin
+/**
+ * Ajout de nouveaux champs sur mesure pour l'extension Restrict Content Pro
+ * http://docs.restrictcontentpro.com/article/1720-creating-custom-registration-fields
+ * Ajouté par Grégoire Noyelle le 12/09/2017
+ */
+
 
 /**
- * Adds the custom fields to the registration form and profile editor
+ * Champs personnalisés pour le formulaire d'inscription et la page mon compte
  *
  */
 function wpparis_rcp_add_user_fields() {
@@ -40,7 +45,7 @@ add_action( 'rcp_profile_editor_after', 'wpparis_rcp_add_user_fields' );
 
 
 /**
- * Adds the custom fields to the member edit screen
+ * Champs personnalisés pour la page d'édition des membres en back-office
  *
  */
 function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
@@ -96,7 +101,7 @@ add_action( 'rcp_edit_member_after', 'wpparis_rcp_add_member_edit_fields' );
 
 
 /**
- * Stores the information submitted during registration
+ * Enregistre les valeurs des champs personnalisés pendant l'enregistrement du compte
  *
  */
 function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
@@ -117,7 +122,7 @@ add_action( 'rcp_form_processing', 'wpparis_rcp_save_user_fields_on_register', 1
 
 
 /**
- * Stores the information submitted profile update
+ * Enregistre les valeurs des champs personnalisés quand le profil est mis à jour
  *
  */
 function wpparis_rcp_save_user_fields_on_profile_save( $user_id ) {
