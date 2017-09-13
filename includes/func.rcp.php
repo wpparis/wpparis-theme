@@ -14,6 +14,8 @@ function wpparis_rcp_add_user_fields() {
 
 	$civilite = get_user_meta( get_current_user_id(), 'rcp_civilite', true );
 	$profession = get_user_meta( get_current_user_id(), 'rcp_profession', true );
+	$rue = get_user_meta( get_current_user_id(), 'rcp_rue', true );
+	$code_postal = get_user_meta( get_current_user_id(), 'rcp_code_postal', true );
 	$ville  = get_user_meta( get_current_user_id(), 'rcp_ville', true );
 	$tshirt = get_user_meta( get_current_user_id(), 'rcp_tshirt', true );
 	$tshirt_taille = get_user_meta( get_current_user_id(), 'rcp_tshirt_taille', true );
@@ -31,8 +33,17 @@ function wpparis_rcp_add_user_fields() {
 		<label for="rcp_profession"><?php _e( 'Votre profession', 'rcp' ); ?></label>
 		<input name="rcp_profession" id="rcp_profession" type="text" value="<?php echo esc_attr( $profession ); ?>"/>
 	</p>
+	<legend>Adresse</legend>
 	<p>
-		<label for="rcp_ville"><?php _e( 'Votre ville', 'rcp' ); ?></label>
+		<label for="rcp_rue"><?php _e( 'N° et Rue', 'rcp' ); ?></label>
+		<input name="rcp_rue" id="rcp_rue" type="text" value="<?php echo esc_attr( $rue); ?>"/>
+	</p>
+	<p>
+		<label for="rcp_code_postal"><?php _e( 'Code Postal', 'rcp' ); ?></label>
+		<input name="rcp_code_postal" id="rcp_code_postal" type="number" value="<?php echo esc_attr( $code_postal); ?>"/>
+	</p>
+	<p>
+		<label for="rcp_ville"><?php _e( 'Ville', 'rcp' ); ?></label>
 		<input name="rcp_ville" id="rcp_ville" type="text" value="<?php echo esc_attr( $ville); ?>"/>
 	</p>
     <p>
@@ -40,6 +51,7 @@ function wpparis_rcp_add_user_fields() {
         <label for="rcp_tshirt"><?php _e( 'Oui, je veux mon t-shirt', 'rcp' ); ?></label>
     </p>
 
+    <legend>T-Shirt WP Paris</legend>
     <p>
         <label for="rcp_tshirt_taille"><?php _e( 'Taille du t-shirt', 'rcp' ); ?></label>
         <select id="rcp_tshirt_taille" name="rcp_tshirt_taille">
@@ -67,6 +79,8 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
 
 	$civilite = get_user_meta( get_current_user_id(), 'rcp_civilite', true );
 	$profession = get_user_meta( $user_id, 'rcp_profession', true );
+	$rue = get_user_meta( get_current_user_id(), 'rcp_rue', true );
+	$code_postal = get_user_meta( get_current_user_id(), 'rcp_code_postal', true );
 	$ville  = get_user_meta( $user_id, 'rcp_ville', true );
 	$tshirt = get_user_meta( get_current_user_id(), 'rcp_tshirt', true );
 	$tshirt_taille = get_user_meta( get_current_user_id(), 'rcp_tshirt_taille', true );
@@ -90,16 +104,34 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
 		</th>
 		<td>
 			<input name="rcp_profession" id="rcp_profession" type="text" value="<?php echo esc_attr( $profession ); ?>"/>
-			<p class="description"><?php _e( 'La profession de l\'adhérent', 'rcp' ); ?></p>
+			<p class="description"><?php _e( 'Profession', 'rcp' ); ?></p>
 		</td>
 	</tr>
 	<tr valign="top">
 		<th scope="row" valign="top">
-			<label for="rcp_profession"><?php _e( 'Ville', 'rcp' ); ?></label>
+			<label for="rcp_rue"><?php _e( 'N° et Rue', 'rcp' ); ?></label>
+		</th>
+		<td>
+			<input name="rcp_rue" id="rcp_rue" type="text" value="<?php echo esc_attr( $rue); ?>"/>
+			<p class="description"><?php _e( 'N° et Rue', 'rcp' ); ?></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row" valign="top">
+			<label for="rcp_code_postal"><?php _e( 'Code Postal', 'rcp' ); ?></label>
+		</th>
+		<td>
+			<input name="rcp_code_postal" id="rcp_code_postal" type="number" value="<?php echo esc_attr( $code_postal); ?>"/>
+			<p class="description"><?php _e( 'Code Postal', 'rcp' ); ?></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row" valign="top">
+			<label for="rcp_ville"><?php _e( 'Ville', 'rcp' ); ?></label>
 		</th>
 		<td>
 			<input name="rcp_ville" id="rcp_ville" type="text" value="<?php echo esc_attr( $ville); ?>"/>
-			<p class="description"><?php _e( 'La ville de l\'adhérent', 'rcp' ); ?></p>
+			<p class="description"><?php _e( 'Ville', 'rcp' ); ?></p>
 		</td>
 	</tr>
     <tr valign="top">
@@ -113,7 +145,7 @@ function wpparis_rcp_add_member_edit_fields( $user_id = 0 ) {
     </tr>
     <tr valign="top">
         <th scope="row" valign="top">
-            <label for="rcp_civilite"><?php _e( 'Taille du t-shirt', 'rcp' ); ?></label>
+            <label for="rcp_tshirt_taille"><?php _e( 'Taille du t-shirt', 'rcp' ); ?></label>
         </th>
         <td>
         <select id="rcp_tshirt_taille" name="rcp_tshirt_taille">
@@ -142,6 +174,12 @@ function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
 	}
 	if( ! empty( $posted['rcp_ville'] ) ) {
 		update_user_meta( $user_id, 'rcp_ville', sanitize_text_field( $posted['rcp_ville'] ) );
+	}
+	if( ! empty( $posted['rcp_rue'] ) ) {
+		update_user_meta( $user_id, 'rcp_rue', sanitize_text_field( $posted['rcp_rue'] ) );
+	}
+	if( ! empty( $posted['rcp_code_postal'] ) ) {
+		update_user_meta( $user_id, 'rcp_code_postal', absint( $posted['rcp_code_postal'] ) );
 	}
     if ( isset( $posted['rcp_tshirt'] ) ) {
         update_user_meta( $user_id, 'rcp_tshirt', true );
@@ -179,6 +217,13 @@ function wpparis_rcp_save_user_fields_on_profile_save( $user_id ) {
 	}
 	if( ! empty( $_POST['rcp_ville'] ) ) {
 		update_user_meta( $user_id, 'rcp_ville', sanitize_text_field( $_POST['rcp_ville'] ) );
+	}
+
+	if( ! empty( $_POST['rcp_rue'] ) ) {
+		update_user_meta( $user_id, 'rcp_rue', sanitize_text_field( $_POST['rcp_rue'] ) );
+	}
+	if( ! empty( $_POST['rcp_code_postal'] ) ) {
+		update_user_meta( $user_id, 'rcp_code_postal', absint( $_POST['rcp_code_postal'] ) );
 	}
     if ( isset( $_POST['rcp_tshirt'] ) ) {
         // Set the user meta if the box was checked on.
